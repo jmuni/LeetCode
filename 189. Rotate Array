@@ -1,0 +1,31 @@
+#https://leetcode.com/problems/rotate-array/
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        
+        #this submission beats 20% of python submissions. gonna have to go back and check my questions
+        
+        #brute force?
+        #rotating to the right is basically popping the last element and inserting it into the beginning
+        #do this k times!
+        
+        #question to think about, how fast is it to pop and insert into the beginning? 
+        #does it matter what order to do it in? 
+        
+        #what is faster, a for loop or while loop?
+        rotations = k % len(nums)
+        i = 0
+        lastelement = len(nums)-1
+        
+        while i < rotations:
+            nums.insert(0,nums[lastelement])
+            nums.pop()
+            i+=1
+        
+        #also!! to think about if the list is size 5, and k is 5, YOU MIGHT AS WELL LEAVE IT
+        #this means we should utilize modulus to make sure that k is smaller than the length of 
+        
+        #return nums
