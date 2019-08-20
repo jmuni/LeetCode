@@ -48,6 +48,7 @@ class Solution:
         
         '''
         #this one in the comments ran faster than 91% of submissions. 
+        #probably because instead of popping everything, he sets each unique value to a seperate list! 
         
         len_ = 1
         if len(nums)==0:
