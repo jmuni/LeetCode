@@ -1,0 +1,65 @@
+#https://leetcode.com/problems/roman-to-integer/
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        
+        #use a for loop to go through and sum up the roman numerals
+        #check for next value to see if the item is being subtracted
+        
+        '''
+        Symbol       Value
+        I             1
+        V             5
+        X             10
+        L             50
+        C             100
+        D             500
+        M             1000
+        '''
+        sum = 0
+        for i in range(len(s)):
+            if i+1 < len(s): #as long as it not the last numeral, it can check the next numeral
+                if s[i] == 'I':
+                    if s[i+1] == 'V' or s[i+1] == 'X':
+                        sum -= 1
+                    else: 
+                        sum += 1
+                if s[i] == 'V':
+                    sum += 5
+                if s[i] == 'X':
+                    if s[i+1] == 'L' or s[i+1] == 'C':
+                        sum -= 10
+                    else: 
+                        sum += 10
+                if s[i] == 'L':
+                    sum += 50
+                if s[i] == 'C':
+                    if s[i+1] == 'D' or s[i+1] == 'M':
+                        sum -= 100
+                    else: 
+                        sum += 100
+                if s[i] == 'D':
+                    sum += 500
+                if s[i] == 'M':   
+                    sum += 1000
+            else: #last value
+                if s[i] == 'I':
+                    sum += 1
+                if s[i] == 'V':
+                    sum += 5
+                if s[i] == 'X':
+                    sum += 10
+                if s[i] == 'L':
+                    sum += 50
+                if s[i] == 'C':
+                    sum += 100
+                if s[i] == 'D':
+                    sum += 500
+                if s[i] == 'M':   
+                    sum += 1000
+                    
+        return sum
+    
+        #this method runs faster than 91% of python submissions! 
+        #can be improved IF I utilize python dict, AND recode based on GOOD USER INPUT AKA larger numbers go first
+        
