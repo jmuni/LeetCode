@@ -1,0 +1,45 @@
+https://leetcode.com/problems/reverse-integer/
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        
+        #flip an integer
+        #can change it to a string and flip
+        
+        #edge case check if x is too large or too small or 0 returns 0
+        #number has to within 32 bit signed int
+        if x > 2147483648 - 1 or x < -2147483648 or x == 0:
+            return 0
+
+        #convert x to str first
+        stringx = str(x)
+        reversex = ""
+
+        #reverse the string
+        if x < 0:
+            #if x is negative, use this loop to ignore case. it will be handled later
+            for i in range(len(stringx)-1, 0, -1):
+                reversex += stringx[i]
+        else:
+            #if x is positive, reverse works normally
+            for i in range(len(stringx)-1,-1,-1):
+                reversex += stringx[i]
+
+        #print(reversex)
+        #converts back to int
+        reversex = int(reversex)
+
+            #if x was negative, reverse x should be negative as well
+        if x < 0:
+            reversex *= -1
+        #print(reversex)
+        
+        #FINAL edge check if reverse x is TOO LARGE OR TOO SMALL RETURN 0
+        if reversex > 2147483648 - 1 or reversex < -2147483648:
+            return 0
+
+        return reversex
+    
+    #this method runs faster than 60% of python submissions! 
+            
+            
