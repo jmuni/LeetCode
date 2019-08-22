@@ -6,7 +6,9 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
+        '''
         #this submission beats 20% of python submissions. gonna have to go back and check my questions
+        #this method has a o(n*k) runtime and o(1) space usage 
         
         #brute force?
         #rotating to the right is basically popping the last element and inserting it into the beginning
@@ -26,6 +28,19 @@ class Solution:
             i+=1
         
         #also!! to think about if the list is size 5, and k is 5, YOU MIGHT AS WELL LEAVE IT
-        #this means we should utilize modulus to make sure that k is smaller than the length of 
+        #this means we should utilize modulus to make sure that k is smaller than the length of list
+        '''
         
-        #return nums
+        
+        #lets try a o(n) with o(n) space
+        #this runs faster than 80% of python submissions! 
+        
+        rotations = k % len(nums)
+        rotatepoint = len(nums) - k
+        
+        part1 = nums[rotatepoint:]
+        part2 = nums[:rotatepoint]
+        newlist = part1 + part2
+        
+        for i in range(len(nums)):
+            nums[i] = newlist[i]
