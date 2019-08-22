@@ -1,0 +1,37 @@
+#https://leetcode.com/problems/longest-common-prefix/
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        
+        #given list of strings, find the longest common prefix!    
+        #brute force - may have to use double for loop to compare each character of the string with the next
+        
+        #atually ^ does not sound too efficient.
+        #how about comparing ALL the strings first char. If they all have it, then ONE common prefix is return
+        #the second that any str does not contain the same char is when the commonprefix gets returned
+        
+        commonprefix = ""
+        
+        numstrings = len(strs)
+        if numstrings == 0: #edge case if list is empty, return ""
+            return commonprefix
+        #we have to fix the smallest sized element, that will be our LONGEST possible prefix 
+        smallest = len(min(strs, key=len))
+        if smallest == 0:   #edge case if list is [""], string size is 0 so return ""
+            return commonprefix
+        
+      
+        
+        common = True
+        
+        for i in range(smallest):
+            theprefix = strs[0][i]
+            for j in range(numstrings):
+                if strs[j][i] != theprefix:
+                    common = False
+                    return commonprefix
+            commonprefix += theprefix
+            
+        return commonprefix
+            
+        #this method ran faster than 71% of python submissions! 
