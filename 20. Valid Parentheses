@@ -1,0 +1,77 @@
+#https://leetcode.com/problems/valid-parentheses/
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        '''
+        #check the following to be an EVEN NUMBER
+            ()
+            {}
+            []
+        #ALSO NEED TO CHECK THAT IT IS VALID
+            ([)] is EVEN but NOT VALID
+            {[]}
+            close off the more recent brackets! 
+            aka, inside the parens/brackets there needs to be an EVEN number of 
+        ''' 
+        parens = 0
+        brackets = 0
+        curlys = 0
+        recent = []
+        
+        #if len(s) % 2 != 0: #first check, if it is uneven it is invalid
+        #    return False
+            
+
+        for i in range(len(s)):
+            if s[i] == '(':
+                #parens += 1
+                recent.append('(')
+
+            if s[i] == '[':
+                #brackets += 1
+                recent.append('[')
+
+            if s[i] == '{':
+                #curlys += 1
+                recent.append('{')
+
+            if len(recent) == 0: #if there is ever a closing brace without an opening brace, its invalid
+                print("Empty")
+                return False
+
+            if s[i] == ')':
+                if recent[len(recent)-1] == '(': #if last element in list is (, then it is good to go
+                    recent.pop()
+                else:
+                    print("()")
+                    return False
+
+            if s[i] == ']':
+                if recent[len(recent)-1] == '[': 
+                    recent.pop()
+                else:
+                    print("[]")
+                    return False
+
+            if s[i] == '}':
+                if recent[len(recent)-1] == '{': 
+                    recent.pop()
+                else:
+                    print("{}")
+                    return False
+
+        if len(recent) != 0: #if recent has stuff left, it means they weren't closed properly
+            return False
+        else:
+            return True
+        
+        #This method runs faster than 94% of python submissions! 
+
+        '''
+        if parens % 2 != 0 or brackets % 2 != 0 or curlys % 2 != 0:
+            return False
+        else:
+            return true 
+        '''
+    
